@@ -1,6 +1,15 @@
 .PHONY: pip_compile pip_install pip_update jupyter clean
 
 ACTIVATE_VENV = source .venv/bin/activate
+#
+# GIT_NAMESPACE=git@gitlab.com:thomtimm
+GIT_NAMESPACE=git@gitlab.codecentric.de:thomas.timmermann
+GIT_REMOTE=$(GIT_NAMESPACE)/heise-nlp-20210331-notebooks.git
+
+init:
+	# git init && git stage . && git commit -m "cookiecutting"  &&
+	git push --set-upstream $(GIT_REMOTE) master && \
+	git remote add origin $(GIT_REMOTE)
 
 clean:
 
@@ -10,7 +19,8 @@ install_venv:
 pip_install:
 	$(ACTIVATE_VENV) && pip install -r requirements.txt
 
-install: install_venv pip_install
+
+install: install_venv pip_install install_extensions
 
 pip_compile:
 	$(ACTIVATE_VENV) && pip-compile --verbose requirements.in > requirements.txt
