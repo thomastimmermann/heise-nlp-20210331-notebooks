@@ -4,12 +4,16 @@ ACTIVATE_VENV = source .venv/bin/activate
 
 clean:
 
-
-pip_compile:
-	$(ACTIVATE_VENV) && pip-compile requirements.in > requirements.txt
+install_venv:
+	python3 -m venv .venv && $(ACTIVATE_VENV) && pip3 install --upgrade pip && pip3 install pip-tools
 
 pip_install:
 	$(ACTIVATE_VENV) && pip install -r requirements.txt
+
+install: install_venv pip_install
+
+pip_compile:
+	$(ACTIVATE_VENV) && pip-compile --verbose requirements.in > requirements.txt
 
 pip_update: pip_compile pip_install
 
