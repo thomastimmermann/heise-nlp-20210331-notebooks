@@ -3,7 +3,7 @@
 ACTIVATE_VENV = source .venv/bin/activate
 #
 # GIT_NAMESPACE=git@gitlab.com:thomtimm
-GIT_NAMESPACE=git@gitlab.codecentric.de:thomas.timmermann
+GIT_NAMESPACE=git@gitlab.com:thomtimm
 GIT_REMOTE=$(GIT_NAMESPACE)/heise-nlp-20210331-notebooks.git
 
 init:
